@@ -69,6 +69,7 @@
             {% if "show_tags" in old_params %}
                 <th>{{ _("tags") }}</th>
             {% endif %}
+            {{ template_helper.call('submission_query_header', course=course, template_helper=template_helper) | safe }}
             <th>
                 <form method="post" action="submissions#alerts">
                     <input type="hidden" name="displayed_selection" value="{{displayed_selection}}">
@@ -164,6 +165,8 @@
             {% endif %}
             <!-- END TAGS td -->
 
+            {{ template_helper.call('submission_query_cell', course=course, submission=submission, template_helper=template_helper) | safe }}
+
             <td>
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="{{get_homepath()}}/submission/{{submission['_id']}}"
@@ -174,6 +177,7 @@
                         <a href="#alerts" class="replay btn btn-secondary" title=" {{ _('Replay submission') }}" data-toggle="tooltip" data-submissionid="{{ submission['_id'] }}"
                            data-placement="bottom"><i class="fa fa-refresh"></i></a>
                     {% endif %}
+                    {{ template_helper.call('submission_query_button', course=course, submission=submission, template_helper=template_helper) | safe }}
                 </div>
             </td>
         </tr>

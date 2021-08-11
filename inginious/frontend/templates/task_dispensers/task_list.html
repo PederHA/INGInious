@@ -35,7 +35,8 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             {% if registered %}
-                                <div class="progress">
+                            {{ template_helper.call('task_list_bar_label', course=course, task=task, template_helper=template_helper) | safe }}
+                                <div class="progress" id="grade-bar">
                                     <div class="progress-bar bg-success" aria-valuenow="{{ completion | int }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ completion | int }}%">
                                         {% if completion.is_integer() %}{{ completion | int }}{% else %}{{ completion }}{% endif %} %
                                     </div>
